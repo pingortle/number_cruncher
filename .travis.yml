@@ -1,2 +1,7 @@
 language: ruby
 rvm: 1.9.3
+deploy:
+  provider: heroku
+  api_key:
+    secure: BjVhSUbYeoA5MNiuN4g66NXEGDUJrMCda+shoYGXiaB8J1sfuvvOm/AN9I8ary84xEWeYDAHWIct9MgVIuDYSXMNRkJ0JSpAIUhwMiLLcPsy7hCUhIDTCi2WaWMwUc0lIypm9UdSPwmvOEWwriDnf2TzvLg1CuGl/s5k32jRldY=
+  app: hidden-beach-8207
