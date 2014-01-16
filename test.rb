@@ -23,8 +23,13 @@ describe "Number Cruncher" do
     refute 10.prime?
   end
 
-  it "should return json" do
+  it "should return json from root_url" do
     get '/6'
+    last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
+  end
+
+  it "should return json from random" do
+    get '/random/10'
     last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
   end
 
@@ -32,6 +37,12 @@ describe "Number Cruncher" do
     get '/6'
     six_info = { number: 6, factors: 6.factors, odd: 6.odd?, even: 6.even?, prime: 6.prime? }
     six_info.to_json.must_equal last_response.body
+  end
+
+  it "should return a random number less than 10 and a float and the seed as json" do
+    get '/random/10'
+    body = JSON.parse(last_response.body)
+    body["int"].to_i < 10 && body["float"] && body["seed"]
   end
 
 end

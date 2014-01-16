@@ -29,3 +29,15 @@ get '/:number' do
 		prime: number.prime?
 	}.to_json
 end
+
+get '/random/:number' do
+	content_type :json
+	number = params[:number].to_i
+	seed = Random.new_seed
+	r = Random.new(seed)
+	{
+		float: r.rand,
+		int: r.rand(number),
+		seed: seed
+	}.to_json
+end
