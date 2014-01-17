@@ -13,6 +13,11 @@ class Integer
 	def prime?
 		self.factors.size == 2
 	end
+
+	def factorial
+		(1..self).reduce(:*)
+	end
+
 end
 
 require 'sinatra'
