@@ -35,6 +35,17 @@ get '/:number' do
 	}.to_json
 end
 
+get '/:number/factorial' do
+	content_type :json
+	number = params[:number].to_i
+	# Example bug bite...
+	number = number == 10 ? 11 : number
+	{
+		number: number,
+		factorial: number.factorial
+	}.to_json
+end
+
 get '/random/:number' do
 	content_type :json
 	number = params[:number].to_i

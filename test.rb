@@ -43,6 +43,12 @@ describe "Number Cruncher" do
     six_info.to_json.must_equal last_response.body
   end
 
+  it "should return the correct factorial of 10 as json" do
+    get "/10/factorial"
+    ten_factorial = { number: 10, factorial: 3628800 }
+    ten_factorial.to_json.must_equal last_response.body
+  end
+
   it "should return a random number less than 10 and a float and the seed as json" do
     get '/random/10'
     body = JSON.parse(last_response.body)
