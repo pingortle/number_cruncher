@@ -22,6 +22,7 @@ end
 
 require 'sinatra'
 require 'json'
+require 'timeout'
 
 get '/:number' do
 	content_type :json
@@ -36,12 +37,18 @@ get '/:number' do
 end
 
 get '/:number/factorial' do
-	content_type :json
-	number = params[:number].to_i
-	{
-		number: number,
-		factorial: number.factorial
-	}.to_json
+	begin
+		timeout(3) {
+			content_type :json
+			number = params[:number].to_i
+			{
+				number: number,
+				factorial: number.factorial
+			}.to_json
+		}
+	rescue Timeout::Error
+		{ error: { message: "Whew... That took too long!" } }.to_json
+	end
 end
 
 get '/random/:number' do
