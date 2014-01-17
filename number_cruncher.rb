@@ -24,6 +24,14 @@ require 'sinatra'
 require 'json'
 require 'timeout'
 
+configure :development, :test do
+	disable :force_ssl
+end
+
+configure :production, :staging do
+	enable :force_ssl
+end
+
 get '/:number' do
 	content_type :json
 	number = params[:number].to_i
