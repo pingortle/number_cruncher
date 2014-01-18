@@ -32,6 +32,13 @@ configure :production, :staging do
 	enable :force_ssl
 end
 
+before do
+	content_type :json
+	if settings.force_ssl and not request.secure?
+		redirect "https://#{settings.host}", 308
+	end
+end
+
 get '/:number' do
 	content_type :json
 	number = params[:number].to_i
