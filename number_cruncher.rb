@@ -32,10 +32,10 @@ configure :production, :staging do
 	enable :force_ssl
 end
 
-before do
+before "/*" do
 	content_type :json
 	if settings.force_ssl and not request.secure?
-		redirect "https://#{settings.host}", 308
+		redirect "https://#{settings.host}/" + params[:splat].join, 308
 	end
 end
 
