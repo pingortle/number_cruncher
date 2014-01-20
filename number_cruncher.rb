@@ -35,7 +35,7 @@ end
 before do
 	content_type :json
 	if settings.force_ssl and not request.secure?
-		redirect "https://#{request.host}/#{request.path}", 308
+		redirect request.url.gsub("http://", "https://"), 308
 	end
 end
 
