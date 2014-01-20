@@ -4,6 +4,7 @@ deploy:
   provider: heroku
   api_key:
     secure: BjVhSUbYeoA5MNiuN4g66NXEGDUJrMCda+shoYGXiaB8J1sfuvvOm/AN9I8ary84xEWeYDAHWIct9MgVIuDYSXMNRkJ0JSpAIUhwMiLLcPsy7hCUhIDTCi2WaWMwUc0lIypm9UdSPwmvOEWwriDnf2TzvLg1CuGl/s5k32jRldY=
+  strategy: git
   app:
     master: hidden-beach-8207-staging
     production: hidden-beach-8207
