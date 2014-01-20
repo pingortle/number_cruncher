@@ -27,6 +27,10 @@ describe "Number Cruncher" do
     assert 10.factorial == 3628800
   end
 
+  it "should say that 0! is 1" do
+    assert 0.factorial == 1
+  end
+
   it "should return json from root_url" do
     get '/6'
     last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
