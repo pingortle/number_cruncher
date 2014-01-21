@@ -28,6 +28,10 @@ require 'sinatra'
 require 'json'
 require 'timeout'
 
+configure do
+	enable :sessions
+end
+
 configure :development, :test do
 	disable :force_ssl
 end
