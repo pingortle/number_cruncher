@@ -41,7 +41,6 @@ configure :production, :staging do
 end
 
 before do
-	content_type :json
 	if settings.force_ssl and not request.secure?
 		redirect request.url.gsub("http://", "https://"), 308
 	end
