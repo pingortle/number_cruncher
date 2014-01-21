@@ -35,6 +35,11 @@ describe "Number Cruncher" do
     10.fibonaccis.must_equal [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
   end
 
+  it "should return json from fibonacci endpoint" do
+    get '/10/fibonacci'
+    last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
+  end
+
   it "should return json from root_url" do
     get '/6'
     last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'
