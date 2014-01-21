@@ -70,6 +70,15 @@ get '/:number/factorial' do
 	end
 end
 
+get '/:number/fibonacci' do
+	content_type :json
+	number = params[:number].to_i
+	{
+		number: number,
+		fibonaccis: number.fibonaccis
+	}.to_json
+end
+
 get '/random/:number' do
 	content_type :json
 	number = params[:number].to_i
