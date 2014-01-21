@@ -31,6 +31,10 @@ describe "Number Cruncher" do
     assert 0.factorial == 1
   end
 
+  it "should say that the first 10 fibonacci numbers are [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]" do
+    10.fibonaccis.must_equal [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+  end
+
   it "should return json from root_url" do
     get '/6'
     last_response.headers['Content-Type'].must_equal 'application/json;charset=utf-8'

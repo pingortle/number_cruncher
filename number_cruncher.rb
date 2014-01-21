@@ -18,6 +18,10 @@ class Integer
 		(1..(self == 0 ? 1 : self)).reduce(:*)
 	end
 
+	def fibonaccis
+		seeds = [1, 1]
+		(1..self).map {|x| (seeds << seeds.reduce(:+)).shift}
+	end
 end
 
 require 'sinatra'
