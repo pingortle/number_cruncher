@@ -20,7 +20,7 @@ class Integer
 
 	def fibonaccis
 		seeds = [1, 1]
-		(1..self).map {|x| (seeds << seeds.reduce(:+)).shift}
+		(1..self).map {(seeds << seeds.reduce(:+)).shift}
 	end
 end
 
