@@ -1,4 +1,6 @@
 ENV['RACK_ENV'] = 'test'
+ENV['API_SECRET_KEY'] = 'secret'
+
 require 'minitest/autorun'
 require 'rack/test'
 require_relative 'number_cruncher.rb'
@@ -68,4 +70,13 @@ describe "Number Cruncher" do
     body["int"].to_i < 10 && body["float"] && body["seed"]
   end
 
+  it "should protect the secret stuff from you" do
+    post '/secret'
+    last_response.status.must_equal 401
+  end
+
+  it "should let you through if you know the secret" do
+    post '/secret', "API-Secret-Key" => ENV['API_SECRET_KEY']
+    last_response.status.must_equal 200
+  end
 end

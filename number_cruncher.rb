@@ -28,6 +28,22 @@ require 'sinatra'
 require 'json'
 require 'timeout'
 
+helpers do
+	def valid_key? key
+		key == ENV['API_SECRET_KEY']
+	end
+
+	def protected!
+		return if authorized?
+		headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
+		halt 401, "Not authorized\n"
+	end
+
+	def authorized?
+		valid_key? request["API-Secret-Key"]
+	end
+end
+
 configure do
 	enable :sessions
 end
@@ -91,5 +107,15 @@ get '/random/:number' do
 		float: r.rand,
 		int: r.rand(number),
 		seed: seed
+	}.to_json
+end
+
+post '/secret' do
+	protected!
+	content_type :json
+
+	{
+		message: "Your secret's safe with me!",
+		secret: params[:secret]
 	}.to_json
 end
